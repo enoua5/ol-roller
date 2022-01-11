@@ -133,8 +133,10 @@
           <option value="10">10 (1d20 + 4d8)</option>
         </select>
         <br/>
-        <label for="roll_adv">Advantage</label>
-        <input id="roll_adv" type="number" value="0" min="-9" max="9"/>
+        <label for="roll_adv">(Dis)advantage</label>
+        <input id="roll_adv" type="number" value="0" min="0" max="9"/>
+        <label for="roll_dis">Disadvantage?</label>
+        <input type="checkbox" id="roll_dis"/>
         <br/>
         <button id="roll_button" onclick="make_roll()">Roll!</button>
         <hr/>

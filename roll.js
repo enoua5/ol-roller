@@ -126,6 +126,8 @@ function make_roll()
 {
     let attr = document.getElementById("roll_attr").value|0;
     let adv = document.getElementById("roll_adv").value|0;
+    if(document.getElementById("roll_dis").checked)
+        adv *= -1;
     
     let rolls = ol_roll(attr, adv);
     let total = total_of_dice(rolls);
