@@ -1,0 +1,67 @@
+#container
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#left-column, #right-column
+{
+    margin: 0.5em;
+}
+
+select, input
+{
+    margin: 0.5em;
+}
+.warning
+{
+    background-color: yellow;
+}
+.die
+{
+    text-align: center;
+    color: white;
+    background-size: contain;
+    width: 3em;
+    min-width: 3em;
+    height: 3em;
+    background-repeat: no-repeat;
+}
+
+.dropped_die
+{
+    opacity: 50%;
+}
+
+.crit_die
+{
+    background-color: rgb(255, 115, 0)
+}
+
+.d4
+{
+    background-image: url(img/d4.png);
+}
+.d6
+{
+    background-image: url(img/d6.png);
+}
+.d8
+{
+    background-image: url(img/d8.png);
+}
+.d10
+{
+    background-image: url(img/d10.png);
+}
+.d20
+{
+    background-image: url(img/d20.png);
+}
+
+#copyright
+{
+    clear: both;
+    background: white;
+    border-top: 1px solid black;
+}
