@@ -74,6 +74,7 @@
             score.max = "10";
             score.value = "0";
             score.id = "score_"+s.toLowerCase();
+            score.onchange = save_character;
             tr.appendChild(score);
 
             let roll_button = document.createElement("button");
@@ -91,23 +92,57 @@
           }
         }
 
-        if(localStorage.e5_ol_roller_char_id)
+        load_character();
+        /*if(localStorage.e5_ol_roller_char_id)
         {
           document.getElementById("character_id").value = localStorage.e5_ol_roller_char_id
           import_character();
+        }*/
+      }
+
+      function save_character()
+      {
+        let save = {};
+        for(let c of stats)
+        {
+          for(let stat of c.stats)
+          {
+            let stat_name = stat.toLowerCase();
+            let value = document.getElementById("score_"+stat_name).value|0;
+            value = Math.max(Math.min(value, 10), 0);
+            save[stat_name] = value;
+          }
+        }
+        localStorage.e5_ol_roller_char_stats = JSON.stringify(save);
+      }
+
+      function load_character()
+      {
+        if(localStorage.e5_ol_roller_char_stats)
+        {
+          try
+          {
+            let load = JSON.parse(localStorage.e5_ol_roller_char_stats);
+            for(let stat in load)
+            {
+              document.getElementById("score_"+stat).value = load[stat];
+            }
+          }
+          catch(e){}
         }
       }
 
       function import_character()
       {
         id = document.getElementById("character_id").value;
-        localStorage.e5_ol_roller_char_id = id;
+        //localStorage.e5_ol_roller_char_id = id;
 
         getStatsForCharacter(id, (stats=>{
           for(let stat in stats)
           {
             document.getElementById("score_"+stat).value = stats[stat];
           }
+          save_character();
         }));
       }
     </script>
@@ -146,7 +181,7 @@
       </div>
       <div id="right-column">
         <h3>Character</h3>
-        <p class="warning">Note: your character ID changes every time you save it.<br/>Make sure to change it here when updating your character!</p>
+        <p class="warning">Note: make sure to update your scores here when they change!</p>
         <label for="character_id">Heromuster character ID</label>
         <input id="character_id"/>
         <button id="load_character" onclick="import_character()">Import</button>
